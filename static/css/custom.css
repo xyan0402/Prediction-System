@@ -1,0 +1,103 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1{
+	font-size: 50%;
+    text-transform: uppercase; 
+    letter-spacing: 0.04em; 
+    margin-bottom: 20px;
+
+}
+
+/*#map {
+    width: 70%; height: 400px; margin-top: 40px; margin-bottom: 40px;
+    background: yellow;
+}*/
+
+.info-window {
+    font-family: 'Montserrat', sans-serif;
+}
+.info-content {
+    color: #999;
+}
+
+
+/*Next to each other -- Map and Panel*/
+#inputs {
+	display: flex;
+	margin-top: 40px; margin-bottom: 40px;
+}
+#panel {
+	width: 350px;
+	background: lightblue;
+	
+	float: right;
+	padding: 10px;
+}
+#wideMap {
+	flex: 1;
+	background: lightgreen;
+	width: 70%; height: 510px; 
+}
+
+
+
+
+#outputs {
+	background: lightyellow;
+	height: 150px;
+}
+
+/*
+#footer {
+	flex: 1;
+	height: 75px;
+	background-color: #99ccff;
+}*/
+
+#test {
+	 width: 70%; height: 400px; margin-top: 20px; margin-bottom: 20px;
+}
+
+/*---------------- Visualization Style ---------------*/
+body {
+      font-family:"avenir next", Arial, sans-serif;
+      font-size: 12px;
+      color: #696969;
+    }
+
+.ticks {
+  font-size: 10px;
+  
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #dcdcdc;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #dcdcdc;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
