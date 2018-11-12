@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>HOUSE PRICE PREDICTION</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='static/css/custom.css' rel='stylesheet' type='text/css'>
+
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Bootstrap core CSS -->
+        <link href="static/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="static/css/mdb.min.css" rel="stylesheet">
+        <!-- My custom styles -->
+        <link href="static/css/style.css" rel="stylesheet">
+    </head>
+
+
+    <body>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>Atlanta House Price Prediction</h1>
+                    <p class="lead">This is a demo for our group project front-end</p>
+                </div>
+            </div> 
+
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="#">Navbar</a>
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Item1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Item2</a>
+                        </li>
+                        <!-- Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action 1</a>
+                                <a class="dropdown-item" href="#">Action 2</a>
+                                <a class="dropdown-item" href="#">Action 3</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- Links -->
+                    <form class="form-inline">
+                        <div class="md-form mt-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        </div>
+                    </form>
+                </div>
+                <!-- Collapsible content -->
+            </nav>
+            <!--/.Navbar-->
+
+
+
+
+
+            <div id="inputs">
+                <div id="wideMap"></div>
+                <div id="panel"> 
+                    <!-- INPUT form -->
+                    {% from "_field.html" import render_field %}
+                    <form method = "POST" action="/">
+                        {{ form.hidden_tag() }}
+                        <table>
+                           {{ render_field(form.zipcode) }}
+                           {{ render_field(form.numBed) }}
+                           {{ render_field(form.numBath) }}
+                        </table>
+                        {{ form.submit }}
+                        {% for message in get_flashed_messages() %}
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </form>
+                </div>
+
+
+
+            </div>
+
+            <div id="instruction">
+                <h3> Some Explainations </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <!-- 
+                <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p> 
+                -->
+                
+            </div>
+
+            <div id="outputs">
+                <h3> Results </h2>
+                <p id="results"> 
+                    {{ ml_results }}
+                <p>
+            </div>
+
+                 
+
+                      
+        <!--Footer-->
+        <footer class="page-footer font-small stylish-color-dark pt-4 mt-4">
+            <!--Footer Links-->
+            <div class="container text-center text-md-left">
+                <!-- Footer links -->
+                <div class="row text-center text-md-left mt-3 pb-3">
+                    
+                    <!--First column-->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Data and Visual Analytics | Group Project</h6>
+                        <p>Here some information will be added... Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...</p>
+                    </div>
+                    <!--/.First column-->
+                   
+                    <hr class="w-100 clearfix d-md-none">
+        
+                    <!--Second column-->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">House Price Prediction</h6>
+                        <p><a href="#!">MDBootstrap</a></p>
+                        <p><a href="#!">MDWordPress</a></p>
+                        <p><a href="#!">BrandFlow</a></p>
+                        <p><a href="#!">Bootstrap Angular</a></p>
+                    </div>
+                    <!--/.Second column-->
+        
+                    <hr class="w-100 clearfix d-md-none">
+        
+                    <!--Third column-->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+                        <p><a href="#!">Your Account</a></p>
+                        <p><a href="#!">Become an Affiliate</a></p>
+                        <p><a href="#!">Shipping Rates</a></p>
+                        <p><a href="#!">Help</a></p>
+                    </div>
+                    <!--/.Third column-->
+        
+                    <hr class="w-100 clearfix d-md-none">
+        
+                    <!--Fourth column-->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                        <p><i class="fa fa-home mr-3"></i> Georgia Institute of Technology, GA 30332, US</p>
+                        <p><i class="fa fa-envelope mr-3"></i> xxxx@gatech.edu</p>
+                        <p><i class="fa fa-phone mr-3"></i> + 1 404 xxx xxxx</p>
+                        <p><i class="fa fa-print mr-3"></i> + 1 404 xxx xxxx</p>
+                    </div>
+                    <!--/.Fourth column-->
+        
+                </div>
+                <!-- Footer links -->
+        
+                <hr>
+      
+                <div class="row py-3 d-flex align-items-center">
+        
+                    <!--Grid column-->
+                    <div class="col-md-8 col-lg-8">
+      
+                        <!--Copyright-->
+                        <p class="text-center text-md-left grey-text">© 2018 Copyright: <a href="http://poloclub.gatech.edu/cse6242/2018spring/"><strong>Our Group Project</strong></a></p>
+                        <!--/.Copyright-->
+      
+                      </div>
+                    <!--Grid column-->
+      
+                    <!--Grid column-->
+                    <div class="col-md-4 col-lg-4 ml-lg-0">
+      
+                        <!--Social buttons-->
+                        <div class="text-center text-md-right">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                        </div>
+                        <!--/.Social buttons-->
+      
+                    </div>
+                    <!--Grid column-->
+        
+                </div>
+       
+            </div>
+      
+        </footer>
+        <!--/.Footer-->
+
+<!--         
+        <div id="test">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13054.756829805301!2d-89.93290520000001!3d35.11447075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1521736360088" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div> 
+-->
+        
+
+        </div> <!-- container -->
+
+        
+        <!-- ---------------------------------- SCRIPTS ----------------------------------- -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+        
+        <!-- Bootstrap tooltips -->
+        <!-- <script type="text/javascript" src="js/popper.min.js"></script> -->
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+        
+        <!-- MDB core JavaScript -->
+        <!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
+        <!-- Google Map -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFzAwZuealKf5gKuj18tGxZy6RwCnpl28"></script>
+        <!-- My customized js file -->
+        <script src="static/js/custom.js"></script>
+    </body>
+</html>

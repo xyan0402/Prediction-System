@@ -1,0 +1,54 @@
+% Why are we using virtual machine?
+% It can help us run on the same environment, also, it is fine if you mess anything up
+% If you mess things up and want to start from scratch, type "vagrant destroy"
+% Don't type "vagrant destroy" lightly! You have to start from SCRATCH again
+
+% to start with, install vagrant and vm virtualbox
+
+%%%% first time start
+% build the virtual machine. Wait a while for the first time
+% first go the directory where files are (you will notice a file named Vagrantfile)
+vagrant up
+% connect to the virtual machine
+vagrant ssh
+% your line should start with words like "vagrant@vagrant"
+% type the following commandlines to install necessary programs and create virtual machine
+sudo apt-get update
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install python3.6
+sudo apt install python3.6-venv
+sudo apt-get install tmux
+sudo apt-get install virtualenv virtualenvwrapper
+if ! grep -q VIRTUALENV_ALREADY_ADDED ~/.bashrc; then
+      echo "# VIRTUALENV_ALREADY_ADDED" >> ~/.bashrc
+      echo "WORKON_HOME=~/.virtualenvs" >> ~/.bashrc
+      echo "PROJECT_HOME=/vagrant" >> ~/.bashrc
+      echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+fi
+source .bashrc
+mkvirtualenv house --python=/usr/bin/python3.6
+
+% virtual environment is created, your commandline should start with (house) right now
+% then install required package for virtual environment
+pip install scipy numpy tensorflow flask gunicorn flask_cors sklearn Flask-WTF
+cd /vagrant
+% start server
+python app.py
+% after starting server, logon to localhost:8080, you should see "index api"
+% then you can go back to the directory, visit client/full_client.html
+% you would be able to see the full website that is able to respond what you type
+
+
+%%%% log out and log in again
+% log out
+% press ctrl-C to stop the server
+exit
+vagrant suspend
+
+% log in for the second time
+vagrant up
+vagrant ssh
+workon house
+cd /vagrant
+python app.py
